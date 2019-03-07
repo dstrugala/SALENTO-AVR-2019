@@ -72,7 +72,7 @@ The advancement of technology has allowed the development various approaches to 
 \subsection{Visual Content Modeling}
 The constant progress in technical capabilities combined with the needs of the computer games market have caused a significant increase in the availability of 3D modeling environments. There are many examples, but the most commonly used in both the entertainment and architectural industries are: 3dsMax, 3D-Coat, Blender, Maya, Modo, Rhino and Zbrush. The sophisticated environments intended for professional users are designed to allow any object to be created using a variety of techniques. However, it should be noted that their comprehensive capabilities are connected with the necessity of having experience in 3D modeling. Nonetheless, it is not always difficult to create 3D content. Proper orientation on specific applications and the limitation of the number of tools allows creating environments that are user-friendly in nature. Examples of this type of applications are: AutoCAD Civil 3D, Ghost Productions, SketchUp, and Sweet Home 3D. From the beginning, designed with specific industries in mind, they enable efficient creation of 3D content without the need for comprehensive knowledge in the field of modeling. However, it also involves a drastic reduction in the generality of the content creation process.
 
-\subsection{Parametric Modeling Creation}
+\subsection{Parametric Modeling}
 Very popular in the field of architecture, the parametric design trend, i.e., creating content only with the help of parameters, and not direct modeling using complicated tools that are included in 3D content creation applications. In this way, the creation process is limited to generating content on demand. With the help of ready-made templates, the person creating a given content needs only to ascribe certain parameters to specific elements, which does not require comprehensive knowledge. This limits the possibilities of creating flexible content to a large extent, but reduces the amount of information needed. These types of templates are most often made from a natural world such as the Voronoy diagram, which resembles arrangement of cells on a leaf. One of the applications that enables generation of this type of content is the Grasshopper extension to the Rhino software [].
 
 \subsection{Augmented reality}
@@ -88,35 +88,41 @@ There is an evident lack of an approach that would enable to combine professiona
 \section{Smart Architectural Design Environment}
 
 \subsection{Requirements}
-In chapter 2, several different approaches to creating 3D content have been presented. For the further development of this field in architectural design, it is necessary to connect these devices in a user-friendly and efficient design environment in such a way that their best functionalities will complement each other. The necessary elements to achieve such a solution are described below.\\
+In chapter 2, several different approaches to creating 3D architectural designs have been presented. Each of these approaches offers some specific advantages, but there is clearly a lack of an integrated approach that could facilitate architectural design while benefiting from the presented solutions. In such a system, the functionalities could complement each other providing a new quality in design, while at the same time limiting disadvantages of some of the employed techniques. Below, we outline requirements that must be met to achieve such a solution.
 
-\begin{addmargin}[1em]{2em}% 1em left, 2em right
-1.	This application should allow for sending a blueprint or empty model of architectural space, but also for using elements from existing content libraries. It is important that elements can be imported using various formats, not only limited to currently popular ones such as .3DS, .FBX or .OBJ, but also by expanding the support for a set of formats for other applications.\\
-\\
-2.	This application should allow to describe individual rooms using scalable areas in order to assign them specific categories, which will facilitate the separation of individual elements due to the assigned space.\\
-\\
-3.	The ability to edit the designed space as part of a comprehensive virtual environment.\\
-\\
-4.	Access inside the virtual environment for designing to a database containing already described components at the same time, enabling them to be edited.\\
-\\
-5.	This application should enable the parameterization of content. The use of predefined parameters will allow for easier processing of possible connections between individual objects.\\
-\\
-6.	This application should allow to categorize individual objects with given parameters, which will allow for creating direct dependences for mutually interacting elements (eg. washing machine with a bathtub).\\
-\\
-7.	This application should enable the use of semantics as a formal way of describing the role and structure of virtual components, which will enable defining their areas of impact in this way and simplify the search and parameterization.\\
-\\
-8.	Determining how individual objects within a given category interact (distance relation), and introducing architectural design rules in the form of information easy to convert into specific parameters.\\
-\\
-9.  	Finally, the use of predefined actions and rules by the designed AI to form messages informing about errors or proposed solutions.\\
-\end{addmargin}
+\begin{enumerate}
+\item	\label{req-vr} The system should allow immersive presentation of the architectural space being designed and natural navigation of users and designers within the space.\\
 
-While requirements 1, 4 and 6 are available within the VR / AR creation environment, such as Unreal Engine or Unity Game Engine, then condition 2, 8 or 9 are at an early conceptual stage or not considered at all in the perspective of immersion technologies . Requirement 3 is limited to static images and changes to pre-defined elements only. Requirement 5 is a strong asset of the Building Information Model (BIM) environment, although it does not contain any links between individual objects and only dry information. Finally, condition 7 has no reference at all in programs for modeling 3D objects and environments for creating VR / AR.
+\item	\label{req-edit-vr} The system should enable modification of the architectural space while a designer is immersed in the space. In general, the space being designed can be a part of a more comprehensive 3D virtual environment (e.g., a kitchen being a part of a flat, a flat being a part of a building).\\
+
+\item \label{req-pattnerns} The system should provide support for using architectural design patterns, which establish common practices and rules in the design. \\
+
+\item \label{req-libraries} The system should allow for using a blueprint or an empty model of an architectural space, but also for using elements taken from existing content libraries. It is important that these elements can be imported in various formats, not only limited to currently popular ones such as .3DS, .FBX or .OBJ, but also by expanding the support for a set of formats for other applications.\\
+
+\item	\label{req-labeling} The system should enable labeling selected regions in order to assign them specific categories, which may be affected by different sets of design patterns.\\
+
+
+\item	\label{req-components} Access inside the virtual environment for designing to a database containing already described components at the same time, enabling them to be edited.\\
+
+\item	\label{req-param} This application should enable the parameterization of content. The use of predefined parameters will allow for easier processing of possible connections between individual objects.\\
+
+\item	\label{req-categories} This application should allow to categorize individual objects with given parameters, which will allow for creating direct dependences for mutually interacting elements (e.g. washing machine with a bathtub).\\
+
+\item	\label{req-semantics} This application should enable the use of semantics as a formal way of describing the role and structure of virtual components, which will enable defining their areas of impact in this way and simplify the search and parameterization.\\
+
+\item	\label{req-rules} Determining how individual objects within a given category interact (distance relation), and introducing architectural design rules in the form of information easy to convert into specific parameters.\\
+
+\item 	\label{req-ai} Finally, the use of predefined actions and rules by the designed AI to form messages informing about errors or proposed solutions.\\
+\end{enumerate}
+
+Requirement \ref{req-vr} is met by existing game engines and VR environments, but is not within the mainstream of architectural design pipelines. Requirement \ref{req-edit-vr} is difficult to meet due to the complexity of the design process. Therefore in practice it is limited to the use static images (e.g., painting colors on a view of a wall) and changes to pre-defined elements only (e.g., !!!) [][].
+Requirements \ref{req-libraries}, \ref{req-components} and \ref{req-categories} are available within the VR / AR design environments, such as Unreal Engine and Unity  Game Engine. Requirements \ref{req-labeling}, \ref{req-rules} or \ref{req-ai} are at an early conceptual stage or not considered at all in current systems. Requirement \ref{req-param} is a strong benefit of the Building Information Model (BIM) environment, although it does not contain any links between individual objects and only simple information. Finally, condition \ref{req-semantics} has no reference at all in programs for modeling 3D objects and environments for creating VR / AR.
 
 
 \subsection{The SADE Approach}
-To enable architectural space design using fully immersive technology, supported by artificial intelligence with information about laws and principles and design patterns, a new approach called SVDE is proposed in this document.
-In the SDE approach, the space design process takes place in an open, distributed architecture that enables the sharing and use of semantically described content. Design is understood here as building space from scratch, including importing own libraries of objects, as well as using or editing previously created elements - also by other users - and ending with ready-made templates of specific solutions. The possibility of creating new solutions and uploading your own libraries is an indispensable factor allowing the development of stored content, which is therefore up-to-date and of adequate quality.
-The starting element in the SVDE approach is the category that reflects the room in the house - called Type of Room (ToR). Each of the ToRs has its basic units, which are semantically described parameterized objects. This object is called Item of Equipment (IoE).
+To enable architectural space design using fully immersive technology, supported by artificial intelligence with information about laws and principles and design patterns, a new approach called SADE is proposed in this document.
+In the SADE approach, the space design process takes place in an open, distributed architecture that enables the sharing and use of semantically described content. Design is understood here as building space from scratch, including importing own libraries of objects, as well as using or editing previously created elements - also by other users - and ending with ready-made templates of specific solutions. The possibility of creating new solutions and uploading your own libraries is an indispensable factor allowing the development of stored content, which is therefore up-to-date and of adequate quality.
+The starting element in the SADE approach is the category that reflects the room in the house - called Type of Room (ToR). Each of the ToRs has its basic units, which are semantically described parameterized objects. This object is called Item of Equipment (IoE).
 By creating a category of parent ToR it is possible to group rights, rules and design patterns (for simplicity called just design patterns - DP) used in architectural designing due to the room. The semantic solution presented in this article develops and modifies the proposed SemFlex [X] approach. The method of parameterization of objects is maintained to a greater extent taking into account the differences resulting from the presentation of various content. The method of creating components divided and described according to the suggested criteria proposed in this article would apply in the method offered by the author, but this is not the subject of the discussion of the following article. Often many of them (DP), depending on the context (room), have a different message that can not be translated into information used by artificial intelligence. The categorization of objects along with their parameters omits this problem by limiting the use of specific regulations depending on the room. In addition, parameters assigned to IoEs allow users and programmed artificial intelligence to properly arrange them within a previously defined closed space.
 The parameters used are not intended to replace existing ones, but only to extend them with additional functionality. The basic features of the objects, such as location, orientation or scale are already well supported by the output applications to create 3D content, so there is no need to describe this information using parameters. However, required elements of equipment (eg. inside the bathroom), identification of their materials (eg. what material is used on the shower door), range of influence (eg. the appropriate distance between the washing machine and bathtub) or assigned design principles (eg. possible location to prevent the toilet from being in front of the door). For example, an attempt to design a given room without having directional education is associated with design errors, which at the implementation stage may cause unnecessary costs. 
 
@@ -143,8 +149,8 @@ Each of these categories is assigned to IoEs. The basic types of parameters for 
 - Pattern - this type of parameters is used for the creation of aesthetics properties of objects. It contains design patterns that are developed as purely subjective solutions that only make the recipient feel if the space seems to be more or less cozy. 
 
 
-\section{Podejście SVDE?????}
-The SVDE approach has been implemented in IDE and shared repositories. This diagram is presented in Fig. X
+\section{The SADE Prototype}
+The SADE approach has been implemented in IDE and shared repositories. This diagram is presented in Fig. X
 
 \begin{figure}[H]
 \centering
