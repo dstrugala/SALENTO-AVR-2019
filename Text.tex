@@ -8,7 +8,7 @@
 \usepackage{scrextend}
 \usepackage{listings}
 \usepackage{float}
-\usepackage{subcaption}
+\usepackage{subfig}
 \lstloadlanguages{C,C++,csh,Java}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
@@ -162,7 +162,8 @@ Due to the various architectural rules applicable in the world, the relationship
 public float getDistance()
     {
 
-        return (Vector3.Distance(Element.transform.position, theDuct.transform.position));
+        return (Vector3.Distance(Element.transform.position, 
+        theDuct.transform.position));
     }
 \end{lstlisting}
 
@@ -171,31 +172,23 @@ Creating a planned space starts with the import of a projection or an empty mode
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{editor1.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - 
-opracowanie własne} \label{fig3}
+\includegraphics[width=\textwidth, height=5.3cm]{editor1.png}
+\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - opracowanie własne} \label{fig3}
 \end{figure}
 
 \begin{figure}
-\centering
-\begin{subfigure}[b]{.5\textwidth}
-  \includegraphics[width=.93\linewidth]{editor2.png}
-    \caption{Editor2}
-      \label{fig4}
-\end{subfigure}%
-\begin{subfigure}[b]{.5\textwidth}
-  \includegraphics[width=.96\linewidth]{editor3.png}
-  \caption{Editor3}
-  \label{fig5}
-\end{subfigure}
-\caption{A figure with two subfigures}
+     \centering
+     \subfloat[][category selection window] {\includegraphics[width=.46\linewidth]{editor2.png}\label{fig4}}%
+     \hspace{0.5cm}
+     \subfloat[][category  box] {\includegraphics[width=.475\linewidth]{editor3.png}\label{fig5}}
+     \caption{Comparison of steady state results (a) x method (b) y method}
+     \label{steady_state}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{editor4.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - 
-opracowanie własne} \label{fig3}
+\includegraphics[width=\textwidth, height=4.5cm]{editor4.png}
+\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - opracowanie własne} \label{fig6}
 \end{figure}
 
 The process consists of several phases. First of all, we need to choose objects that are to be located in the designed space. The objects are downloaded from the server in the form of a package (.unitypackage) along with the DPs file assigned to them. After importing packages with user-oriented objects from the drop-down menu from the application level, it is possible to add individual elements to the room (washing machine, toilet, etc.). With the help of motion controllers, for example HTC Vive, the user can interact with the object he chooses by changing its position, while receiving all the time feedback containing distances from other elements contained in this space, such as shafts.
@@ -203,27 +196,19 @@ At the moment when the user makes a decision that is inconsistent with the appli
 In the presented example (Fig. X), the room has been associated with the bathroom category, which as the room inside the flat or house has the most restrictions as to the mutual relations of individual objects and the required distances. The distance parameter which has been assigned to the toilet limits the distance area that can be applied both to the maximum from the board (in this case 1.0 m) and the minimum distance that must be kept (eg 0.3 m from the wall). In the presented example, this object must only have an assigned component specifying its relationship with other elements of equipment.
 
 \begin{figure}[H]
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.93\linewidth]{aplikacja1.png}
-    \caption{Editor2}
-  \label{fig4}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.96\linewidth]{aplikacja2.png}
-  \caption{Editor3}
-  \label{fig5}
-\end{subfigure}
-\caption{A figure with two subfigures}
+     \centering
+     \subfloat[][category selection window] {\includegraphics[width=.46\linewidth]{aplikacja1.png}\label{fig4}}%
+     \hspace{0.5cm}
+     \subfloat[][category  box] {\includegraphics[width=.475\linewidth]{aplikacja2.png}\label{fig5}}
+     \caption{Comparison of steady state results (a) x method (b) y method}
+     \label{fig7}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{aplikacja3.png}
 \caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - 
-opracowanie własne} \label{fig3}
+opracowanie własne} \label{fig8}
 \end{figure}
 
 
@@ -235,28 +220,15 @@ At a later stage of developing the application, an important point to enter is c
 \section{Conclusion}
 This article presents a new approach to the design of architectural spaces. The approach, called SVDE, is based on the concept of parameterization of content - semantically described objects, which are the basic unit ready to be shared. The method is flexible, because it allows both the transition from parameterized to categorized content, and vice versa, i.e. providing the ability to use existing content libraries to be used or edited to create final virtual scenes. Thanks to such a mechanism, it is possible to create social content in 3D. The content creation process takes place in a dispersed architecture. Thanks to the generally available elements, the design process is shortened mainly to the selection of the user's interesting elements to be placed in the designed space. The design process is simplified by the semantics of use. Taxonomy is used to describe the classes of objects. These classes are used to define ranges of values of IoE parameters and their DPs, thus reducing the complexity of artificial intelligence used to detect possible irregularities. Currently, the semantic IDE - implemented as an extension of the editor to the Unity IDE - ensures creation of IoEs semantic instances in the wizard, importing content from SCR, and creating parameterized ToR categories from existing content elements. Parameterization of the created IoE is done manually, through the window editor of the generated code containing design patterns. In future work, it is planned to extend the application to a fully functional AI, capable of making independent decisions. This will further simplify the design process. The presented method of building semantic parameterized content elements and their creation has been tested with a limited number of relatively simple design scenarios. In future works, a larger design sample is planned that will require more related elements
 
-\begin{theorem}
-This is a sample theorem. The run-in heading is set in bold, while
-the following text appears in italics. Definitions, lemmas,
-propositions, and corollaries are styled the same way.
-\end{theorem}
-%
-% the environments 'definition', 'lemma', 'proposition', 'corollary',
-% 'remark', and 'example' are defined in the LLNCS documentclass as well.
-%
-\begin{proof}
-Proofs, examples, and remarks have the initial word in italics,
-while the following text appears in normal font.
-\end{proof}
-For citations of references, we prefer the use of square brackets
-and consecutive numbers. Citations using labels or the author/year
-convention are also acceptable. The following bibliography provides
-a sample reference list with entries for journal
-articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
-book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
-and a homepage~\cite{ref_url1}. Multiple citations are grouped
-\cite{ref_article1,ref_lncs1,ref_book1},
-\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
+%For citations of references, we prefer the use of square brackets
+%and consecutive numbers. Citations using labels or the author/year
+%convention are also acceptable. The following bibliography provides
+%a sample reference list with entries for journal
+%articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
+%book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
+%and a homepage~\cite{ref_url1}. Multiple citations are grouped
+%\cite{ref_article1,ref_lncs1,ref_book1},
+%\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
 %
 % ---- Bibliography ----
 %
