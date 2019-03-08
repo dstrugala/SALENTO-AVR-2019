@@ -53,13 +53,13 @@ This paper proposes a system, which uses virtual reality (VR) and artificial int
 \section{Introduction}
 The increasing use of interactive three-dimensional technologies, such as augmented reality (AR) and virtual reality (VR), for creating immersive multimodal human-computer interfaces has become possible mainly due to the significant progress in the efficiency of computing and graphics hardware, especially mobile devices. These techniques are gaining popularity, also thanks to the continually increasing bandwidth and availability of mobile computer networks, and increasingly sophisticated forms of presentation and interaction with 3D content available on end-user's equipment.
 
-The constantly growing market of computer games is largely driven by the development of graphic hardware and applications based on three-dimensional user interfaces. However, the use of these techniques is not only limited to applications in the entertainment industry. They can be – and in fact are – successfully used in other areas, such as rapid prototyping of products, and simultaneous trainings. Standards such as COLLADA [1], MPEG-4 [2], U3D [3] and VRML / X3D [4,5] have been elaborated on the basis of standardization studies aimed at developing universal data formats for describing interactive three-dimensional VR / AR content available on the internet. These standards make it possible to use three-dimensional techniques on a completely new level, by encoding, transmitting over the network and presenting on the end-user's devices high-quality 3D interactive multimedia content. Users can use virtual environments available over the network in a similar way as their local equivalents.
+The constantly growing market of computer games is largely driven by the development of graphic hardware and applications based on three-dimensional user interfaces. However, the use of these techniques is not only limited to applications in the entertainment industry. They can be – and in fact are – successfully used in other areas, such as rapid prototyping of products, and simultaneous trainings. Standards such as COLLADA [13], MPEG-4 [14], U3D [3] and VRML / X3D [28,29] have been elaborated on the basis of standardization studies aimed at developing universal data formats for describing interactive three-dimensional VR / AR content available on the internet. These standards make it possible to use three-dimensional techniques on a completely new level, by encoding, transmitting over the network and presenting on the end-user's devices high-quality 3D interactive multimedia content. Users can use virtual environments available over the network in a similar way as their local equivalents.
 
 The use of VR / AR techniques may not only lead to the implementation of improved versions of existing services, such as travel guides, e-learning systems, e-commerce applications or social and entertainment services. Remote access to 3D interactive content and multimedia services makes it possible to implement a class of new AR and VR services.
 
-Digital services have been widely used in the architectural industry for a long time. Due to the necessity to improve the process of creating three-dimensional models, the quality and the manner of their subsequent presentation, as well as better parameterization of individual components (BIM) [6-8], the number of applications of interactive three-dimensional content increases in the design process. However, it should be remembered that creating, searching and combining dispersed three-dimensional interactive content is much more complex and complicated than with standard software for creating 3D models. Currently used relationships between components within the digital content are limited to the basic meaning and form of the presentation. For better development of tools that can be used during the design process, spatial, temporal, structural or behavioral relationships should be introduced. This is possible through the use of semantic techniques. Even for content with relatively small structural complexity, such as HTML pages, the use of semantic techniques provides a significant increase in the ability to automatically process and integrate content.
+Digital services have been widely used in the architectural industry for a long time. Due to the necessity to improve the process of creating three-dimensional models, the quality and the manner of their subsequent presentation, as well as better parameterization of individual components (BIM) [4,10,11], the number of applications of interactive three-dimensional content increases in the design process. However, it should be remembered that creating, searching and combining dispersed three-dimensional interactive content is much more complex and complicated than with standard software for creating 3D models. Currently used relationships between components within the digital content are limited to the basic meaning and form of the presentation. For better development of tools that can be used during the design process, spatial, temporal, structural or behavioral relationships should be introduced. This is possible through the use of semantic techniques. Even for content with relatively small structural complexity, such as HTML pages, the use of semantic techniques provides a significant increase in the ability to automatically process and integrate content.
 
-This article presents a new approach to the use of digital services in the design process called SVDE. In this approach, a number of techniques have been used that improve the design of architectural spaces. Thanks to the additional use of semantic techniques, it allows appropriate organization and consistency of content that is shared and used by users. The presented approach is only aimed at simplifying and developing currently used design practices. The outline of the application architecture along with the prototype of the architectural space design tool, which was implemented as an extension to the Unity IDE [9], was also presented.
+This article presents a new approach to the use of digital services in the design process called SADE. In this approach, a number of techniques have been used that improve the design of architectural spaces. Thanks to the additional use of semantic techniques, it allows appropriate organization and consistency of content that is shared and used by users. The presented approach is only aimed at simplifying and developing currently used design practices. The outline of the application architecture along with the prototype of the architectural space design tool, which was implemented as an extension to the Unity IDE [22], was also presented.
 
 The rest of the article is organized in the following way. Chapter 2 presents an overview of the state of the art in architectural design. In Chapter 3, the concept, requirements and general architecture of a distributed semantic design environment are discussed. Section 4 describes the implementation of the environment, presents a step-by-step design example and discusses possible further development directions.
 Finally, section 5 concludes the paper.
@@ -67,22 +67,22 @@ Finally, section 5 concludes the paper.
 \section{State of the Art}
 The advancement of technology has allowed the development various approaches to the design of architectural spaces – both 2D and 3D. All these methods aim at reducing the amount of information necessary to provide at the design stage, as well as at decreasing the duration and complexity of the creation process. This is however often associated with the increase of the complexity of the software used in the design stage. Achieving the final effects is possible in several different ways presented below.
 \subsection{2D Drawings}
-2D design applications can be used to draw elements necessary to understand the designed space. These applications allow one to design spaces by using various 2D elements. Starting with simple lines in Autodesk AutoCAD applications and ending with complex multi-layer elements such as walls, e.g., in Graphisoft ArchiCAD or Autodesk Revit. The complexity of creating a space in this way depends on the degree of integration between the elements. Let's compare for example two softwares from one company - AutoCAD and Revit. Based on the experience gained while working in both software, the conclusion is that AutoCAD is more time consuming than Revit[10,11]. This is due to the different uses of these two applications. First of all, AutoCAD is a purely planar application that can be compared to a sheet of paper. Any changes made in one place must be marked separately in another. In turn, Revit automatically transfers each change to the other planes (cross-section, elevation, projection). This can be a key aspect but only when there is a need to make sudden changes due to urgent deadlines. But each of these functions in its own environment has an advantage over the other. The possibility of independent editing of each element separately gives you freedom and full control over the drawings being developed. On the other hand, automatic transfer of a single change to all related drawings facilitates and accelerates project work. There is the possibility of building a three-dimensional space in AutoCAD in the same way as in Revit or ArchiCAD which can create 3D model, but result is rarely satisfactory and the process is so complicated that they are used most often in conjunction with applications designed for 3D modeling. This solution gives some degree of freedom and introduces a hierarchy of architectural space design. Thanks to focusing on individual stages, it is possible to have a greater impact on the entire process, however this is also associated with the increase in the duration of the development of a space due to the need for amendments on both the 2D drawing and the 3D model.
+2D design applications can be used to draw elements necessary to understand the designed space. These applications allow one to design spaces by using various 2D elements. Starting with simple lines in Autodesk AutoCAD applications and ending with complex multi-layer elements such as walls, e.g., in Graphisoft ArchiCAD or Autodesk Revit. The complexity of creating a space in this way depends on the degree of integration between the elements. Let's compare for example two softwares from one company - AutoCAD and Revit. Based on the experience gained while working in both software, the conclusion is that AutoCAD is more time consuming than Revit[15,17]. This is due to the different uses of these two applications. First of all, AutoCAD is a purely planar application that can be compared to a sheet of paper. Any changes made in one place must be marked separately in another. In turn, Revit automatically transfers each change to the other planes (cross-section, elevation, projection). This can be a key aspect but only when there is a need to make sudden changes due to urgent deadlines. But each of these functions in its own environment has an advantage over the other. The possibility of independent editing of each element separately gives you freedom and full control over the drawings being developed. On the other hand, automatic transfer of a single change to all related drawings facilitates and accelerates project work. There is the possibility of building a three-dimensional space in AutoCAD in the same way as in Revit or ArchiCAD which can create 3D model, but result is rarely satisfactory and the process is so complicated that they are used most often in conjunction with applications designed for 3D modeling. This solution gives some degree of freedom and introduces a hierarchy of architectural space design. Thanks to focusing on individual stages, it is possible to have a greater impact on the entire process, however this is also associated with the increase in the duration of the development of a space due to the need for amendments on both the 2D drawing and the 3D model.
 
 \subsection{Visual Content Modeling}
 The constant progress in technical capabilities combined with the needs of the computer games market have caused a significant increase in the availability of 3D modeling environments. There are many examples, but the most commonly used in both the entertainment and architectural industries are: 3dsMax, 3D-Coat, Blender, Maya, Modo, Rhino and Zbrush. The sophisticated environments intended for professional users are designed to allow any object to be created using a variety of techniques. However, it should be noted that their comprehensive capabilities are connected with the necessity of having experience in 3D modeling. Nonetheless, it is not always difficult to create 3D content. Proper orientation on specific applications and the limitation of the number of tools allows creating environments that are user-friendly in nature. Examples of this type of applications are: AutoCAD Civil 3D, Ghost Productions, SketchUp, and Sweet Home 3D. From the beginning, designed with specific industries in mind, they enable efficient creation of 3D content without the need for comprehensive knowledge in the field of modeling. However, it also involves a drastic reduction in the generality of the content creation process.
 
 \subsection{Parametric Modeling}
-Very popular in the field of architecture, the parametric design trend, i.e., creating content only with the help of parameters, and not direct modeling using complicated tools that are included in 3D content creation applications[12,13]. In this way, the creation process is limited to generating content on demand. With the help of ready-made templates, the person creating a given content needs only to ascribe certain parameters to specific elements, which does not require comprehensive knowledge. This limits the possibilities of creating flexible content to a large extent, but reduces the amount of information needed. These types of templates are most often made from a natural world such as the Voronoy diagram, which resembles arrangement of cells on a leaf. One of the applications that enables generation of this type of content is the Grasshopper extension to the Rhino software [14].
+Very popular in the field of architecture, the parametric design trend, i.e., creating content only with the help of parameters, and not direct modeling using complicated tools that are included in 3D content creation applications[25,26]. In this way, the creation process is limited to generating content on demand. With the help of ready-made templates, the person creating a given content needs only to ascribe certain parameters to specific elements, which does not require comprehensive knowledge. This limits the possibilities of creating flexible content to a large extent, but reduces the amount of information needed. These types of templates are most often made from a natural world such as the Voronoy diagram, which resembles arrangement of cells on a leaf. One of the applications that enables generation of this type of content is the Grasshopper extension to the Rhino software [8].
 
 \subsection{Augmented reality}
-Augmented reality is a promising technique in the field of architectural design.[15-17] However, currently the use of AR is this domain is low. This is due to several factors. Firstly, the available AR applications do not permit professional design of architectural spaces. Secondly, high cost and low availability of AR devices such as Magic Leap and Microsoft HoloLens, which facilitate interaction within the augmented reality environments discourage potential users and result in low market penetration. Devices which are widely available and popular, such as tablets and smartphones, do not provide quality and efficiency that would allow for effective creation of 3D architectural designs. Some companies provide their own design applications through application markets, such as the Google Play or the AppStore for mobile devices users, but they are mainly limited to browsing specific products in the existing space, without the possibility of using them at the design stage.
+Augmented reality is a promising technique in the field of architectural design.[1,2,27] However, currently the use of AR is this domain is low. This is due to several factors. Firstly, the available AR applications do not permit professional design of architectural spaces. Secondly, high cost and low availability of AR devices such as Magic Leap and Microsoft HoloLens, which facilitate interaction within the augmented reality environments discourage potential users and result in low market penetration. Devices which are widely available and popular, such as tablets and smartphones, do not provide quality and efficiency that would allow for effective creation of 3D architectural designs. Some companies provide their own design applications through application markets, such as the Google Play or the AppStore for mobile devices users, but they are mainly limited to browsing specific products in the existing space, without the possibility of using them at the design stage.
 
 \subsection{Virtual reality}
-Currently, there is very limited access to applications designed just for the design of architectural spaces in virtual reality[18]. Softwares and extensions are developed for modeling programs that enable to generate from an existing architectural model a VR environment in which the user can freely navigate[19-21]. These tools, however, do not enable to create or modify spaces or even write users' comments to the surrounding space. Virtual reality has a wide range of applications in architecture, both as a tool for designing and presentation of final effects[22,23]. The currently used mainstream design process is the preparation of a ready-made 3D model in a program purely aimed at creating 3D architectural content (see 2.3 Visual Content Modeling) and exporting it to generally available computer game engines such as Unity 3D[24] or Unreal Engine[25]. Consequently, there is a need to have appropriate knowledge both in the field of developing 3D content and in operation of game engines to generate the expected result. Often there are issues related to compatibility between programs with extensions supported by individual engines. The space imported in this way is characterized by a better quality of the presented results, but it does not give the freedom to fully shape it without knowing the rights and principles existing in the architectural design process.
+Currently, there is very limited access to applications designed just for the design of architectural spaces in virtual reality[23]. Softwares and extensions are developed for modeling programs that enable to generate from an existing architectural model a VR environment in which the user can freely navigate[5,7,9]. These tools, however, do not enable to create or modify spaces or even write users' comments to the surrounding space. Virtual reality has a wide range of applications in architecture, both as a tool for designing and presentation of final effects[18,20]. The currently used mainstream design process is the preparation of a ready-made 3D model in a program purely aimed at creating 3D architectural content (see 2.3 Visual Content Modeling) and exporting it to generally available computer game engines such as Unity 3D[9] or Unreal Engine[6]. Consequently, there is a need to have appropriate knowledge both in the field of developing 3D content and in operation of game engines to generate the expected result. Often there are issues related to compatibility between programs with extensions supported by individual engines. The space imported in this way is characterized by a better quality of the presented results, but it does not give the freedom to fully shape it without knowing the rights and principles existing in the architectural design process.
 
 \subsection{Design patterns in architecture}
-Design patterns are recognized and proven ways to manage the designed space. They are based mainly on previously developed projects and current design trends [26]. These are hints that can affect the subjective perception of a given space. Their use in a given project is not compulsory, but non-use is usually treated as a mistake. Due to its nature, in situations where it is not possible to obtain a solution based on the currently applicable patterns, it is allowed to omit them. The use of design patterns is a kind of an attempt to introduce standardization into architectural design. One of the most well-known design pattern in architecture is Feng shui[27].
+Design patterns are recognized and proven ways to manage the designed space. They are based mainly on previously developed projects and current design trends [16]. These are hints that can affect the subjective perception of a given space. Their use in a given project is not compulsory, but non-use is usually treated as a mistake. Due to its nature, in situations where it is not possible to obtain a solution based on the currently applicable patterns, it is allowed to omit them. The use of design patterns is a kind of an attempt to introduce standardization into architectural design. One of the most well-known design pattern in architecture is Feng shui[21].
 
 \subsection{Summary}
 High complexity of 3D content creation software and the number of aspects to be considered during the design process make creating architectural spaces a sophisticated task on many levels. The above described approaches are suitable for solving different problems in various contexts. In a practical approach, it is necessary to combine several of these methods to ensure the expected final effect, which does not always have to achieve a satisfactory result due to limitations in the presentation of the final effects.
@@ -118,23 +118,22 @@ In chapter 2, several different approaches to creating 3D architectural designs 
 \item 	\label{req-ai} Finally, the use of predefined actions and rules by the designed AI to form messages informing about errors or proposed solutions.\\
 \end{enumerate}
 
-Requirement \ref{req-vr} is met by existing game engines and VR environments, but is not within the mainstream of architectural design pipelines. Requirement \ref{req-edit-vr} is difficult to meet due to the complexity of the design process. Therefore in practice it is limited to predefined surfaces (e.g., painting colors on a view of a wall) and basic changes to elements only, without any reference to other objects inside this environment (e.g., !!!) [][]. Requirements \ref{req-libraries}, \ref{req-components} and \ref{req-categories} are available within the VR / AR design environments, such as Unreal Engine and Unity  Game Engine. Requirements \ref{req-labeling}, \ref{req-rules} or \ref{req-ai} are at an early conceptual stage or not considered at all in current systems. Requirement \ref{req-param} is a strong benefit of the Building Information Model (BIM) environment, although it does not contain any links between individual objects and only simple information. Finally, condition \ref{req-semantics} has no reference at all in programs for modeling 3D objects and environments for creating VR / AR.
+Requirement \ref{req-vr} is met by existing game engines and VR environments, but is not within the mainstream of architectural design pipelines. Requirement \ref{req-edit-vr} is difficult to meet due to the complexity of the design process. Therefore in practice it is limited to predefined surfaces (e.g., painting colors on a view of a wall) and basic changes to elements only, without any reference to other objects inside this environment [12,19]. Requirements \ref{req-libraries}, \ref{req-components} and \ref{req-categories} are available within the VR / AR design environments, such as Unreal Engine and Unity  Game Engine. Requirements \ref{req-labeling}, \ref{req-rules} or \ref{req-ai} are at an early conceptual stage or not considered at all in current systems. Requirement \ref{req-param} is a strong benefit of the Building Information Model (BIM) environment, although it does not contain any links between individual objects and only simple information. Finally, condition \ref{req-semantics} has no reference at all in programs for modeling 3D objects and environments for creating VR / AR.
 
 \subsection{The SADE Approach}
 To enable architectural space design using fully immersive technology, supported by artificial intelligence with information about laws and principles and design patterns, a new approach called SADE is proposed in this document.
 In the SADE approach, the space design process takes place in an open, distributed architecture that enables the sharing and use of semantically described content. Design is understood here as building space from scratch, including importing own libraries of objects, as well as using or editing previously created elements - also by other users - and ending with ready-made templates of specific solutions. The possibility of creating new solutions and uploading your own libraries is an indispensable factor allowing the development of stored content, which is therefore up-to-date and of adequate quality.
 The starting element in the SADE approach is the category that reflects the room in the house - called Type of Room (ToR). Each of the ToRs has its basic units, which are semantically described parameterized objects. This object is called Item of Equipment (IoE).
-By creating a category of parent ToR it is possible to group rights, rules and design patterns (for simplicity called just design patterns - DP) used in architectural designing due to the room. The semantic solution presented in this article develops and modifies the proposed SemFlex [26] approach. The method of parameterization of objects is maintained to a greater extent taking into account the differences resulting from the presentation of various content. The method of creating components divided and described according to the suggested criteria proposed in this article would apply in the method offered by the author, but this is not the subject of the discussion of the following article. Often many of them (DP), depending on the context (room), have a different message that can not be translated into information used by artificial intelligence. The categorization of objects along with their parameters omits this problem by limiting the use of specific regulations depending on the room. In addition, parameters assigned to IoEs allow users and programmed artificial intelligence to properly arrange them within a previously defined closed space.
+By creating a category of parent ToR it is possible to group rights, rules and design patterns (for simplicity called just design patterns - DP) used in architectural designing due to the room. The semantic solution presented in this article develops and modifies the proposed SemFlex [27] approach. The method of parameterization of objects is maintained to a greater extent taking into account the differences resulting from the presentation of various content. The method of creating components divided and described according to the suggested criteria proposed in this article would apply in the method offered by the author, but this is not the subject of the discussion of the following article. Often many of them (DP), depending on the context (room), have a different message that can not be translated into information used by artificial intelligence. The categorization of objects along with their parameters omits this problem by limiting the use of specific regulations depending on the room. In addition, parameters assigned to IoEs allow users and programmed artificial intelligence to properly arrange them within a previously defined closed space.
 The parameters used are not intended to replace existing ones, but only to extend them with additional functionality. The basic features of the objects, such as location, orientation or scale are already well supported by the output applications to create 3D content, so there is no need to describe this information using parameters. However, required elements of equipment (eg. inside the bathroom), identification of their materials (eg. what material is used on the shower door), range of influence (eg. the appropriate distance between the washing machine and bathtub) or assigned design principles (eg. possible location to prevent the toilet from being in front of the door). For example, an attempt to design a given room without having directional education is associated with design errors, which at the implementation stage may cause unnecessary costs. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{graf.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - 
-opracowanie własne} \label{fig1}
+\caption{Types of Item of Equipment parameters.} \label{fig1}
 \end{figure}
 
-Combining individual objects into categories includes in the SVDE, independently parameterized features of objects (Fig. X). Both the list of categories and parameters is expandable. New types of categories can be added as part of the built-in editor, and new types of parameters by adding them in individual implementations.
+Combining individual objects into categories includes in the SADE, independently parameterized features of objects (Fig. 1). Both the list of categories and parameters is expandable. New types of categories can be added as part of the built-in editor, and new types of parameters by adding them in individual implementations.
 The basic types of categories include:\\
 - bathroom\\
 - kitchen\\
@@ -156,12 +155,11 @@ The SADE approach has been implemented in IDE and shared repositories. This diag
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{graf2.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - 
-opracowanie własne} \label{fig2}
+\caption{Architecture of the immersive architectural design environment} \label{fig2}
 \end{figure}
-SADE is implemented in two ways: firstly as an extension to the Unity IDE (figure X), communicating with SCR, which have been implemented as a REST service operating on web servers. The Unity IDE was chosen as the starting point because of its popularity and the multitude of features it has as a cross-platform gaming engine and IDE. Unity allows you to freely expand with unconventional menus, custom component editors, or editor windows using C\# and JavaScript. The SVDE Unity extension enables the use of virtual rooms (categories) along with their objects, as well as editing or creating resources and sending them in parameterized form to the SCR. This approach was developed based on the SemFlex [28] concept.
+SADE is implemented in two ways: firstly as an extension to the Unity IDE (figure 2), communicating with SCR, which have been implemented as a REST service operating on web servers. The Unity IDE was chosen as the starting point because of its popularity and the multitude of features it has as a cross-platform gaming engine and IDE. Unity allows you to freely expand with unconventional menus, custom component editors, or editor windows using C\# and JavaScript. The SADE Unity extension enables the use of virtual rooms (categories) along with their objects, as well as editing or creating resources and sending them in parameterized form to the SCR. This approach was developed based on the SemFlex [24] concept.
 
-The second way to implement the SVDE approach is the application implemented in the framework of the extension that allows the use of fully immersive technology, in which the user has the opportunity to interact directly with the designed space. With the help of previously implemented DPs, all design decisions are monitored by the developed AI, which informs about possible design errors or non-conformities with applicable regulations by means of messages.
+The second way to implement the SADE approach is the application implemented in the framework of the extension that allows the use of fully immersive technology, in which the user has the opportunity to interact directly with the designed space. With the help of previously implemented DPs, all design decisions are monitored by the developed AI, which informs about possible design errors or non-conformities with applicable regulations by means of messages.
 Due to the various architectural rules applicable in the world, the relationships between objects such as washing machine - bathtub - toilet are determined using a script written in C\#. Editing individual elements is available from the Unity level, which does not require the user to learn programming knowledge. This allows you to calculate the distance between individual elements relative to the floor of a given room. Below is an example of the method used to calculate these dependencies. 
 
 \begin{lstlisting}[language={[Sharp]C}, caption={C\# exaple}, label={Script}]
@@ -174,32 +172,32 @@ public float getDistance()
 \end{lstlisting}
 
 \subsection{Application Example}
-Creating a planned space starts with the import of a projection or an empty model and opens the SADE window allowing the selection of categories. It is available from the menu in Unity. On the left side of the application window there is a hierarchical list of elements within a given scene. At the beginning it contains only basic objects such as: Camera, Point of light, room projection. The bottom left corner of the screen is the open SADE tool window. The right side of the screen contains a preview of the created 3D scene. The category editor as part of the SADE tool provides a new one. When the button of the existing category is pressed, a pop-up menu. The list of categories is taken from a DPs shared repository (Fig. X). After selection of the category appears a new window and a scalable box, by means of which the user limits a given space as a specific room. After the user has defined the boundaries of the designed space, the actual design process begins.
+Creating a planned space starts with the import of a projection or an empty model and opens the SADE window allowing the selection of categories. It is available from the menu in Unity. On the left side of the application window there is a hierarchical list of elements within a given scene. At the beginning it contains only basic objects such as: Camera, Point of light, room projection. The bottom left corner of the screen is the open SADE tool window. The right side of the screen contains a preview of the created 3D scene. The category editor as part of the SADE tool provides a new one. When the button of the existing category is pressed, a pop-up menu. The list of categories is taken from a DPs shared repository (Fig. 3). After selection of the category appears a new window and a scalable box (Fig. 4), by means of which the user limits a given space as a specific room. After the user has defined the boundaries of the designed space, the actual design process begins(Fig. 5).
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth, height=5.3cm]{editor1.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - opracowanie własne} \label{fig3}
+\caption{Category Creator - selection of existing category} \label{fig3}
 \end{figure}
 
 \begin{figure}
      \centering
-     \subfloat[][category selection window] {\includegraphics[width=.46\linewidth]{editor2.png}\label{fig4}}%
+     \subfloat[][ToR selecting window] {\includegraphics[width=.46\linewidth]{editor2.png}\label{fig4}}%
      \hspace{0.5cm}
-     \subfloat[][category  box] {\includegraphics[width=.475\linewidth]{editor3.png}\label{fig5}}
-     \caption{Comparison of steady state results (a) x method (b) y method}
+     \subfloat[][ToR created and adjusted into designed space] {\includegraphics[width=.475\linewidth]{editor3.png}\label{fig5}}
+     \caption{ToR Creator - instantiating a Type of Room}
      \label{steady_state}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth, height=4.5cm]{editor4.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - opracowanie własne} \label{fig6}
+\includegraphics[width=\textwidth, height=4.55cm]{editor4.png}
+\caption{Adding DP to new IoE} \label{fig6}
 \end{figure}
 
 The process consists of several phases. First of all, we need to choose objects that are to be located in the designed space. The objects are downloaded from the server in the form of a package (.unitypackage) along with the DPs file assigned to them. After importing packages with user-oriented objects from the drop-down menu from the application level, it is possible to add individual elements to the room (washing machine, toilet, etc.). With the help of motion controllers, for example HTC Vive, the user can interact with the object he chooses by changing its position, while receiving all the time feedback containing distances from other elements contained in this space, such as shafts.
 At the moment when the user makes a decision that is inconsistent with the applicable design rules, he will receive a warning from the system about irregularities with the considered guidelines that generate this error.
-In the presented example (Fig. X), the room has been associated with the bathroom category, which as the room inside the flat or house has the most restrictions as to the mutual relations of individual objects and the required distances. The distance parameter which has been assigned to the toilet limits the distance area that can be applied both to the maximum from the board (in this case 1.0 m) and the minimum distance that must be kept (eg 0.3 m from the wall). In the presented example, this object must only have an assigned component specifying its relationship with other elements of equipment.
+In the presented example (Fig. 6), the room has been associated with the bathroom category, which as the room inside the flat or house has the most restrictions as to the mutual relations of individual objects and the required distances. The distance parameter which has been assigned to the toilet limits the distance area that can be applied both to the maximum from the board (in this case 1.0 m) and the minimum distance that must be kept (eg 0.3 m from the wall). In the presented example, this object must only have an assigned component specifying its relationship with other elements of equipment (Fig. 7).
 
 \begin{figure}[H]
      \centering
@@ -213,8 +211,7 @@ In the presented example (Fig. X), the room has been associated with the bathroo
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{aplikacja3.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - 
-opracowanie własne} \label{fig8}
+\caption{Displaying pop-up messages about mistakes which were made by a designer} \label{fig8}
 \end{figure}
 
 Thanks to this type of approach, the process of space design is simplified by limiting the available elements in a given area, which avoids often obvious design mistakes, and reduces the cost of creating one's own living space due to the fact that no special education is required for people who want to independently design your own living space. Thanks to the use of shared repositories, it is possible to use a wide range of products available on the market.
@@ -223,7 +220,7 @@ Thanks to this type of approach, the process of space design is simplified by li
 At a later stage of developing the application, an important point to enter is creating a plug-in installed in 3D content creation programs that will allow you to standardize the extension for imported objects. Thanks to this, it will be possible to avoid deficiencies in export-based models. The second direction of development is to expand the competence of AI by being able to independently propose layouts of elements within a given room, using the existing solutions. This will allow even more ergonomic development of the living space. And the last direction at this stage is to enable the repository to download ready-made solutions for rooms that will only require minor editing.
 
 \section{Conclusion}
-This article presents a new approach to the design of architectural spaces. The approach, called SVDE, is based on the concept of parameterization of content - semantically described objects, which are the basic unit ready to be shared. The method is flexible, because it allows both the transition from parameterized to categorized content, and vice versa, i.e. providing the ability to use existing content libraries to be used or edited to create final virtual scenes. Thanks to such a mechanism, it is possible to create social content in 3D. The content creation process takes place in a dispersed architecture. Thanks to the generally available elements, the design process is shortened mainly to the selection of the user's interesting elements to be placed in the designed space. The design process is simplified by the semantics of use. Taxonomy is used to describe the classes of objects. These classes are used to define ranges of values of IoE parameters and their DPs, thus reducing the complexity of artificial intelligence used to detect possible irregularities. Currently, the semantic IDE - implemented as an extension of the editor to the Unity IDE - ensures creation of IoEs semantic instances in the wizard, importing content from SCR, and creating parameterized ToR categories from existing content elements. Parameterization of the created IoE is done manually, through the window editor of the generated code containing design patterns. In future work, it is planned to extend the application to a fully functional AI, capable of making independent decisions. This will further simplify the design process. The presented method of building semantic parameterized content elements and their creation has been tested with a limited number of relatively simple design scenarios. In future works, a larger design sample is planned that will require more related elements
+This article presents a new approach to the design of architectural spaces. The approach, called SADE, is based on the concept of parameterization of content - semantically described objects, which are the basic unit ready to be shared. The method is flexible, because it allows both the transition from parameterized to categorized content, and vice versa, i.e. providing the ability to use existing content libraries to be used or edited to create final virtual scenes. Thanks to such a mechanism, it is possible to create social content in 3D. The content creation process takes place in a dispersed architecture. Thanks to the generally available elements, the design process is shortened mainly to the selection of the user's interesting elements to be placed in the designed space. The design process is simplified by the semantics of use. Taxonomy is used to describe the classes of objects. These classes are used to define ranges of values of IoE parameters and their DPs, thus reducing the complexity of artificial intelligence used to detect possible irregularities. Currently, the semantic IDE - implemented as an extension of the editor to the Unity IDE - ensures creation of IoEs semantic instances in the wizard, importing content from SCR, and creating parameterized ToR categories from existing content elements. Parameterization of the created IoE is done manually, through the window editor of the generated code containing design patterns. In future work, it is planned to extend the application to a fully functional AI, capable of making independent decisions. This will further simplify the design process. The presented method of building semantic parameterized content elements and their creation has been tested with a limited number of relatively simple design scenarios. In future works, a larger design sample is planned that will require more related elements
 
 %For citations of references, we prefer the use of square brackets
 %and consecutive numbers. Citations using labels or the author/year
@@ -244,105 +241,118 @@ This article presents a new approach to the design of architectural spaces. The 
 % \bibliography{mybibliography}
 %
 \begin{thebibliography}{8}
+\bibitem{ref_art1}
+Abboud R.: Architecture in an Age of Augmented Reality:  
+Opportunities and Obstacles for Mobile AR in Design, Construction, and Post-Completion.  NAWIC International Women’s Day Scholarship Recipient. (2013)
+
+\bibitem{ref_art2}
+Anders, P., Lonsing, W., A.: AmbiViewer: A Tool for Creating Architectural Mixed Reality. Association for Computer Aided Design in Architecture, 104--113 (2005)
+
 \bibitem{ref_url1}
-Khronos Group: COLLADA - 3D Asset Exchange Schema (2017), 
-\url{https://www.khronos.org/collada/}. Last accesed 7 Mar 2019
-
-\bibitem{ref_url2}
-Khronos Group: WebGL - OpenGL ES for the Web (2017), 
-\url{https://www.khronos.org/webgl/}. Last accesed 7 Mar 2019
-
-\bibitem{ref_url3}
 ECMA International: Universal 3D File Format (2007) Homepagee, 
 \url{http://www.ecma-international.org/}. Last accesed 7 Mar 2019
 
-\bibitem{ref_url4}
-Web3D: The Virtual Reality Modeling Language - ISO/IEC 14772–1 (2006).
-\url{http://www.web3d.org/standards/all}. Last accesed 7 Mar 2019
-
-\bibitem{ref_url5}
-Web 3D: X3D Specifications - ISO/IEC-19775-1 (2013), 
-\url{http://web3d.org/x3d/specifications/}. Last accessed 7 Mar 2019
-
-\bibitem{ref_url6}
+\bibitem{ref_url2}
 Engineering.com: BIM 101: What is Building Information Modeling? (2016), \url{https://www.engineering.com/BIM/ArticleID/11436/BIM-101-What-is-Building-Information-Modeling.aspx}. Last accessed 7 Mar 2019
 
+\bibitem{ref_url3}
+Enscape: Homepage (2018), \url{https://enscape3d.com/architectural-virtual-reality/}. Last accessed 7 Mar 2019
+
+\bibitem{ref_url4}
+Epic Games: Unreal Engine (2019), \url{https://www.unrealengine.com/en-US/what-is-unreal-engine-4}. Last accessed 7 Mar 2019
+
+\bibitem{ref_url5}
+Eyecad VR: Homepage (2018), \url{https://eyecadvr.com/pl/}. Last accessed 7 Mar 2019
+
+\bibitem{ref_url6}
+Grasshopper Homepage, \url{https://www.grasshopper3d.com/}. Last accessed 7 Mar 2019
+
 \bibitem{ref_url7}
+IRISVR: Heomepage (2018), \url{https://irisvr.com/}. Last accessed 7 Mar 2019
+
+\bibitem{ref_url8}
 ISO. : Store - ISO 19650-1:2018 (2018), \url{https://www.iso.org/standard/68078.html}. 
 Last accessed 7 Mar 2019
 
-\bibitem{ref_url8}
+\bibitem{ref_url9}
 ISO. : Store - ISO 19650-2:2018 (2018), \url{https://www.iso.org/standard/68080.html}. 
 Last accessed 7 Mar 2019
 
-\bibitem{ref_url9}
-Unity Technologies: Unity Game Engine v. 2018.3.3f1 (2018), 
-\url{https://unity3d.com/unity}. Last accessed 7 Mar 2019
+\bibitem{ref_art3}
+Kaleja P., Kozlovská M.: Virtual Reality as Innovative Approach to the Interior Designing. Selected Scientific
+Papers - Journal of Civil Engineering. \textbf{12}(1), 109--116 (2017)
 
 \bibitem{ref_url10}
+Khronos Group: COLLADA - 3D Asset Exchange Schema (2017), 
+\url{https://www.khronos.org/collada/}. Last accesed 7 Mar 2019
+
+\bibitem{ref_url11}
+Khronos Group: WebGL - OpenGL ES for the Web (2017), 
+\url{https://www.khronos.org/webgl/}. Last accesed 7 Mar 2019
+
+\bibitem{ref_url12}
+Linkedin: 5 key differences between AutoCAD and Revit! (2017), 
+\url{https://www.linkedin.com/pulse/5-key-differences-between-autocad-revit-carole-dib}. Last accessed 7 Mar 9
+
+\bibitem{ref_art4}
+Mak M.Y., Ng S.T.: The art and science of Feng Shui—a study on architects’ perception. Building and
+Environment. \textbf{40}(3), 427--434 (2005)
+
+\bibitem{ref_url13}
 NEWYORK ENGINEERS: BLOG - How do AutoCad and Revit Compare? (2017), 
 \url{https://www.ny-engineers.com/blog/how-do-autocad-and-revit-compare}. 
 Last accessed 7 Mar 2019
 
-\bibitem{ref_url11}
-Linkedin: 5 key differences between AutoCAD and Revit! (2017), 
-\url{https://www.linkedin.com/pulse/5-key-differences-between-autocad-revit-carole-dib}. Last accessed 7 Mar 9
-
-\bibitem{ref_article1}
-Walczak, K., Cellary, W.: X-VRML for advanced virtual reality applications. Comput.
- \textbf{36}(3), 89--92 (2003)
-
-\bibitem{ref_article2}
-Walczak, K., Wojciechowski, R., W\'{o}jtowicz, A.: Interactive production of dynamic
-3D sceneries for virtual television studio. -In: The 7th Virtual Reality IC VRIC -
-Laval Virtual, pp. 167--177, Laval (2005)
-
-\bibitem{ref_url12}
-Grasshopper Homepage, \url{https://www.grasshopper3d.com/}. Last accessed 7 Mar 2019
-
-\bibitem{ref_article2}
-Anders, P., Lonsing, W., A.: AmbiViewer: A Tool for Creating Architectural Mixed Reality. Association for Computer Aided Design in Architecture, 104--113 (2005)
-
-\bibitem{ref_article3}
-Wang X.: Augmented Reality in Architecture and Design: Potentials and Challenges for Application. International journal of architectural computing. \textbf{02}(7), 309--326 (2009)
-
-\bibitem{ref_article4}
-Abboud R.: Architecture in an Age of Augmented Reality:  
-Opportunities and Obstacles for Mobile AR in Design, Construction, and Post-Completion.  NAWIC International Women’s Day Scholarship Recipient. (2013)
-
-\bibitem{ref_url13}
-VRender: Top 5 Virtual Reality Applications for Architects (2018), \url{https://vrender.com/top-5-virtual-reality-applications-for-architects/}. 
-Last accessed 7 Mar 2019
+\bibitem{ref_art5}
+Paes D., Arantes E., Irizarry J.: Immersive environment for improving the understanding of architectural 3D
+models: Comparing user spatial perception between immersive and traditional virtual reality systems.
+Automation in Construction. \textbf{84}, 292--303 (2017)
 
 \bibitem{ref_url14}
-Eyecad VR: Homepage (2018), \url{https://eyecadvr.com/pl/}. Last accessed 7 Mar 2019
+Pixel Legend: VIRTUALIST (2019), \url{https://www.pixellegend.com/virtualist/}. Last accessed 8 Mar 2019
 
-\bibitem{ref_url15}
-Enscape: Homepage (2018), \url{https://enscape3d.com/architectural-virtual-reality/}. Last accessed 7 Mar 2019
-
-\bibitem{ref_url16}
-IRISVR: Heomepage (2018), \url{https://irisvr.com/}. Last accessed 7 Mar 2019
-
-\bibitem{ref_article5}
-Paes D., Arantes E., Irizarry J.: Immersive environment for improving the understanding of architectural 3D models: Comparing user spatial perception between immersive and traditional virtual reality systems. Automation in Construction. \textbf{84}, 292--303 (2017)
-
-\bibitem{ref_article6}
-Portman M.E., Natapov A., Fisher-Gewirtzman D.: To go where no man has gone before: Virtual reality in architecture, landscape architecture and environmental planning. Computers, Environment and Urban Systems. \textbf{54}, 376--384 (2015)
-
-\bibitem{ref_url17}
-Unity Technologies: Unity Game Engine v. 2018.3.3f1 (2019). \url{https://unity3d.com/unity}. Last accessed 7 Mar 2019
-
-\bibitem{ref_url18}
-Epic Games: Unreal Engine (2019), \url{https://www.unrealengine.com/en-US/what-is-unreal-engine-4}. Last accessed 7 Mar 2019
-
-\bibitem{ref_article3}
-Mak M.Y., Ng S.T.: AThe art and science of Feng Shui—a study on architects’ perception. Building and Environment. \textbf{40}(3), 427--434 (2005)
+\bibitem{ref_art6}
+Portman M.E., Natapov A., Fisher-Gewirtzman D.: To go where no man has gone before: Virtual reality in
+architecture, landscape architecture and environmental planning. Computers, Environment and Urban Systems.
+\textbf{54}, 376--384 (2015)
 
 \bibitem{ref_book1}
 Salingaros, N. A.: Design Patterns and Living Architecture. Sustasis Press, Portland, Oregon, (2017) 
 
+\bibitem{ref_url15}
+Unity Technologies: Unity Game Engine v. 2018.3.3f1 (2018), 
+\url{https://unity3d.com/unity}. Last accessed 7 Mar 2019
+
+\bibitem{ref_url16}
+VRender: Top 5 Virtual Reality Applications for Architects (2018),
+\url{https://vrender.com/top-5-virtual-reality-applications-for-architects/}. 
+Last accessed 7 Mar 2019
+
 \bibitem{ref_proc1}
-Walczak K.: Semantics-Supported Collaborative Creation of Interactive 3D Content. In: De Paolis L., Bourdot P., Mongelli A. (eds.), Augmented Reality, Virtual Reality, and Computer Graphics. AVR 2017. Lecture Notes in Computer Science, vol 10325. Springer, Cham (2017)
+Walczak K.: Semantics-Supported Collaborative Creation of Interactive 3D Content. In: De Paolis L., Bourdot
+P., Mongelli A. (eds.), Augmented Reality, Virtual Reality, and Computer Graphics. AVR 2017. Lecture Notes in
+Computer Science, vol 10325. Springer, Cham (2017)
+
+\bibitem{ref_art7}
+Walczak, K., Cellary, W.: X-VRML for advanced virtual reality applications. Comput.
+ \textbf{36}(3), 89--92 (2003)
+
+\bibitem{ref_art8}
+Walczak, K., Wojciechowski, R., W\'{o}jtowicz, A.: Interactive production of dynamic
+3D sceneries for virtual television studio. -In: The 7th Virtual Reality IC VRIC -
+Laval Virtual, pp. 167--177, Laval (2005)
+
+\bibitem{ref_art9}
+Wang X.: Augmented Reality in Architecture and Design: Potentials and Challenges for Application.
+International journal of architectural computing. \textbf{02}(7), 309--326 (2009)
+
+\bibitem{ref_url17}
+Web3D: The Virtual Reality Modeling Language - ISO/IEC 14772–1 (2006).
+\url{http://www.web3d.org/standards/all}. Last accesed 7 Mar 2019
+
+\bibitem{ref_url18}
+Web 3D: X3D Specifications - ISO/IEC-19775-1 (2013), 
+\url{http://web3d.org/x3d/specifications/}. Last accessed 7 Mar 2019
 
 \end{thebibliography}
 \end{document}
