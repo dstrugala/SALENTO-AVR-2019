@@ -163,14 +163,43 @@ SADE is implemented in two ways: firstly as an extension to the Unity IDE (figur
 
 The second way to implement the SADE approach is the application implemented in the framework of the extension that allows the use of fully immersive technology, in which the user has the opportunity to interact directly with the designed space. With the help of previously implemented DPs, all design decisions are monitored by the developed AI, which informs about possible design errors or non-conformities with applicable regulations by means of messages.
 Due to the various architectural rules applicable in the world, the relationships between objects such as washing machine - bathtub - toilet are determined using a script written in C\#. Editing individual elements is available from the Unity level, which does not require the user to learn programming knowledge. This allows you to calculate the distance between individual elements relative to the floor of a given room. Below is an example of the method used to calculate these dependencies. 
+\begin{verbatim}
+Toilet(?t), integer[>=30, <=100](?distance),
+hasDistance(?t, ?distance) -> hasGoodRange(?t, true)
 
-\begin{lstlisting}[language={[Sharp]C}, caption={C\# exaple}, label={Script}]
-public float getDistance()
-    {
+DPSafeRule
+    (Annotation(rdfs:comment "Rule with data range restriction")
+    Body(
+        ClassAtom(:Toilet Variable(var:t))
+        DataPropertyAtom(:hasDistance Variable(var:t) Variable(var:distance))
+        DataRangeAtom(
+            DatatypeRestriction(xsd:integer xsd:minInclusive "30"^^xsd:integer
+                xsd:maxInclusive "100"^^xsd:integer) Variable(var:distance)) )
+    Head(
+        DataPropertyAtom(:hasGoodRange Variable(var:t "true"^^xsd:boolean)
+:C owl:equivalentClass [ a owl:Restriction;
+                         owl:onProperty :f
+                         owl:someValuesFrom :C2 ]
+\end{verbatim}
 
-        return (Vector3.Distance(Element.transform.position, 
-        theDuct.transform.position));
-    }
+
+\begin{lstlisting}[language={swrl}, caption={SWRL example}, label={Script}]
+Toilet(?t), integer[>=30, <=100](?distance),
+hasDistance(?t, ?distance) -> hasGoodRange(?t, true)
+
+DPSafeRule
+    (Annotation(rdfs:comment "Rule with data range restriction")
+    Body(
+        ClassAtom(:Toilet Variable(var:t))
+        DataPropertyAtom(:hasDistance Variable(var:t) Variable(var:distance))
+        DataRangeAtom(
+            DatatypeRestriction(xsd:integer xsd:minInclusive "30"^^xsd:integer
+                xsd:maxInclusive "100"^^xsd:integer) Variable(var:distance)) )
+    Head(
+        DataPropertyAtom(:hasGoodRange Variable(var:t "true"^^xsd:boolean)
+:C owl:equivalentClass [ a owl:Restriction;
+                         owl:onProperty :f
+                         owl:someValuesFrom :C2 ]
 \end{lstlisting}
 
 \subsection{Application Example}
