@@ -130,8 +130,7 @@ The parameters used are not intended to replace existing ones, but only to exten
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{graf.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - 
-opracowanie własne} \label{fig1}
+\caption{Types of Item of Equipment parameters.} \label{fig1}
 \end{figure}
 
 Combining individual objects into categories includes in the SADE, independently parameterized features of objects (Fig. 1). Both the list of categories and parameters is expandable. New types of categories can be added as part of the built-in editor, and new types of parameters by adding them in individual implementations.
@@ -156,51 +155,64 @@ The SADE approach has been implemented in IDE and shared repositories. This diag
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{graf2.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - 
-opracowanie własne} \label{fig2}
+\caption{Architecture of the immersive architectural design environment} \label{fig2}
 \end{figure}
 SADE is implemented in two ways: firstly as an extension to the Unity IDE (figure 2), communicating with SCR, which have been implemented as a REST service operating on web servers. The Unity IDE was chosen as the starting point because of its popularity and the multitude of features it has as a cross-platform gaming engine and IDE. Unity allows you to freely expand with unconventional menus, custom component editors, or editor windows using C\# and JavaScript. The SADE Unity extension enables the use of virtual rooms (categories) along with their objects, as well as editing or creating resources and sending them in parameterized form to the SCR. This approach was developed based on the SemFlex [24] concept.
 
 The second way to implement the SADE approach is the application implemented in the framework of the extension that allows the use of fully immersive technology, in which the user has the opportunity to interact directly with the designed space. With the help of previously implemented DPs, all design decisions are monitored by the developed AI, which informs about possible design errors or non-conformities with applicable regulations by means of messages.
-Due to the various architectural rules applicable in the world, the relationships between objects such as washing machine - bathtub - toilet are determined using a script written in C\#. Editing individual elements is available from the Unity level, which does not require the user to learn programming knowledge. This allows you to calculate the distance between individual elements relative to the floor of a given room. Below is an example of the method used to calculate these dependencies. 
-\begin{verbatim}
-Toilet(?t), integer[>=30, <=100](?distance),
-hasDistance(?t, ?distance) -> hasGoodRange(?t, true)
+Due to the various architectural rules applicable in the world, the relationships between objects such as washing machine - bathtub - toilet are determined using rules written in Prolog. This language was chosen to avoid the requirement of having specialized knowledge in programming. Also editing individual elements is available from the Unity level so it reduce the needs of having additional external sotwares. This allows to calculate the distance between individual elements. This method is based on measuring distance between two points that are located inside the centers of specific objects. There are implemented two objects and dependency between them (eg. Toilet - WaterDuct). Next there are set minimum and maximum distance range between those objects. For example in bathroom almost every objects position is set with to wall (eg. toilet can be located in the center of the bathroom) so user has to put distance just on two axes - "X" and "Y". It is also necessary to set a certain margin of error. And the last step is calculation of the distance. It is a square root of the square of the difference between the position of two objects along a given wall (in this case the "x-axis") and the perpendicular offset from it ("Y-axis"). Below is an example of the implemented method. 
 
-DPSafeRule
-    (Annotation(rdfs:comment "Rule with data range restriction")
-    Body(
-        ClassAtom(:Toilet Variable(var:t))
-        DataPropertyAtom(:hasDistance Variable(var:t) Variable(var:distance))
-        DataRangeAtom(
-            DatatypeRestriction(xsd:integer xsd:minInclusive "30"^^xsd:integer
-                xsd:maxInclusive "100"^^xsd:integer) Variable(var:distance)) )
-    Head(
-        DataPropertyAtom(:hasGoodRange Variable(var:t "true"^^xsd:boolean)
-:C owl:equivalentClass [ a owl:Restriction;
-                         owl:onProperty :f
-                         owl:someValuesFrom :C2 ]
-\end{verbatim}
-
-
-\begin{lstlisting}[language={swrl}, caption={SWRL example}, label={Script}]
-Toilet(?t), integer[>=30, <=100](?distance),
-hasDistance(?t, ?distance) -> hasGoodRange(?t, true)
-
-DPSafeRule
-    (Annotation(rdfs:comment "Rule with data range restriction")
-    Body(
-        ClassAtom(:Toilet Variable(var:t))
-        DataPropertyAtom(:hasDistance Variable(var:t) Variable(var:distance))
-        DataRangeAtom(
-            DatatypeRestriction(xsd:integer xsd:minInclusive "30"^^xsd:integer
-                xsd:maxInclusive "100"^^xsd:integer) Variable(var:distance)) )
-    Head(
-        DataPropertyAtom(:hasGoodRange Variable(var:t "true"^^xsd:boolean)
-:C owl:equivalentClass [ a owl:Restriction;
-                         owl:onProperty :f
-                         owl:someValuesFrom :C2 ]
+\begin{lstlisting}[language={c++}, caption={Prolog example}, label={Script}]
 \end{lstlisting}
+
+\begin{verbatim}
+bathroomDistance_TD(T, D) :- type(T, Toilet),
+			        type(D, WaterDuct),
+			        (distanceXinRange(T, D, 30, 100),
+			        distanceYinRange(T, D, 0, 5));
+			        (distanceYinRange(T, D, 30, 100),
+			        distanceXinRange(T, D, 0, 5))
+			      
+bathroomDistance_TBt(T, Bt) :- type(T, Toilet),
+			        type(Bt, BathTub),
+			        (distanceXinRange(T, Bt, 20),
+			        distanceYinRange(T, Bt, 0, 5));
+			        (distanceYinRange(T, Bt, 20),
+			        distanceXinRange(T, Bt, 0, 5))
+			      
+bathroomDistance_WmBt(Wm, Bt) :- type(Wm, WashingMachine),
+			        type(Bt, BathTub),
+			        (distanceXinRange(Wm, Bt, 60),
+			        distanceYinRange(Wm, Bt, 0, 5));
+			        (distanceYinRange(Wm, Bt, 60),
+			        distanceXinRange(Wm, Bt, 0, 5))
+
+bathroomDistance_WmSh(Wm, Sh) :- type(Wm, WashingMachine),
+			        type(Sh, Shower),
+			        (distanceXinRange(Wm, Sh, 60),
+			        distanceYinRange(Wm, Sh, 0, 5));
+			        (distanceYinRange(Wm, Sh, 60),
+			        distanceXinRange(Wm, Sh, 0, 5))
+			      
+bathroomDistance_WmSi(Wm, Si) :- type(Wm, WashingMachine),
+			        type(Si, Sink),
+			        (distanceXinRange(Wm, Si, 60),
+			        distanceYinRange(Wm, Si, 0, 5));
+			        (distanceYinRange(Wm, Si, 60),
+			        distanceXinRange(Wm, Si, 0, 5))	
+			        
+bathroomDistance_WmSh(Si, Wa) :- type(Si, Sink),
+			        type(Wa, Wall),
+			        (distanceXinRange(Si, Wa, 30),
+			        distanceYinRange(Si, Wa, 0, 5));
+			        (distanceYinRange(Si, Wa, 30),
+			        distanceXinRange(Si, Wa, 0, 5))
+
+distanceXinRange(A, B, Min, Max) :- point(A, X1, Y1),
+				    point(B, X2, Y2),
+				    sqrt((X2-X1)^2 + (Y2-Y1)^2) =< Max,
+				    sqrt((X2-X1)^2 + (Y2-Y1)^2) >= Min
+\end{verbatim}
 
 \subsection{Application Example}
 Creating a planned space starts with the import of a projection or an empty model and opens the SADE window allowing the selection of categories. It is available from the menu in Unity. On the left side of the application window there is a hierarchical list of elements within a given scene. At the beginning it contains only basic objects such as: Camera, Point of light, room projection. The bottom left corner of the screen is the open SADE tool window. The right side of the screen contains a preview of the created 3D scene. The category editor as part of the SADE tool provides a new one. When the button of the existing category is pressed, a pop-up menu. The list of categories is taken from a DPs shared repository (Fig. 3). After selection of the category appears a new window and a scalable box (Fig. 4), by means of which the user limits a given space as a specific room. After the user has defined the boundaries of the designed space, the actual design process begins(Fig. 5).
@@ -208,22 +220,22 @@ Creating a planned space starts with the import of a projection or an empty mode
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth, height=5.3cm]{editor1.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - opracowanie własne} \label{fig3}
+\caption{Category Creator - selection of existing category} \label{fig3}
 \end{figure}
 
 \begin{figure}
      \centering
-     \subfloat[][category selection window] {\includegraphics[width=.46\linewidth]{editor2.png}\label{fig4}}%
+     \subfloat[][ToR selecting window] {\includegraphics[width=.46\linewidth]{editor2.png}\label{fig4}}%
      \hspace{0.5cm}
-     \subfloat[][category  box] {\includegraphics[width=.475\linewidth]{editor3.png}\label{fig5}}
-     \caption{Comparison of steady state results (a) x method (b) y method}
+     \subfloat[][ToR created and adjusted into designed space] {\includegraphics[width=.475\linewidth]{editor3.png}\label{fig5}}
+     \caption{ToR Creator - instantiating a Type of Room}
      \label{steady_state}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth, height=4.5cm]{editor4.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - opracowanie własne} \label{fig6}
+\includegraphics[width=\textwidth, height=4.55cm]{editor4.png}
+\caption{Adding DP to new IoE} \label{fig6}
 \end{figure}
 
 The process consists of several phases. First of all, we need to choose objects that are to be located in the designed space. The objects are downloaded from the server in the form of a package (.unitypackage) along with the DPs file assigned to them. After importing packages with user-oriented objects from the drop-down menu from the application level, it is possible to add individual elements to the room (washing machine, toilet, etc.). With the help of motion controllers, for example HTC Vive, the user can interact with the object he chooses by changing its position, while receiving all the time feedback containing distances from other elements contained in this space, such as shafts.
@@ -242,8 +254,7 @@ In the presented example (Fig. 6), the room has been associated with the bathroo
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{aplikacja3.png}
-\caption{Prototyp wykorzystania sztucznej inteligencji w projektowaniu architektonicznym - 
-opracowanie własne} \label{fig8}
+\caption{Displaying pop-up messages about mistakes which were made by a designer} \label{fig8}
 \end{figure}
 
 Thanks to this type of approach, the process of space design is simplified by limiting the available elements in a given area, which avoids often obvious design mistakes, and reduces the cost of creating one's own living space due to the fact that no special education is required for people who want to independently design your own living space. Thanks to the use of shared repositories, it is possible to use a wide range of products available on the market.
